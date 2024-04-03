@@ -34,6 +34,8 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
+      Copilot = "C",
+      TabNine = "T"
     },
   },
 }
