@@ -1,7 +1,6 @@
 return {
   "uga-rosa/translate.nvim",
-  lazy = false,
-  priority = 5000,
+  event = { "InsertEnter", "LspAttach" },
   opts = function()
     return {
       preset = {

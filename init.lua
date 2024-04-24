@@ -17,3 +17,4 @@ end
 
 require "lazy_setup"
 require "polish"
+vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#aaaaaa" })

@@ -1,5 +1,14 @@
 return {
   {
+    "Exafunction/codeium.nvim",
+    event = { "InsertEnter", "LspAttach" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function() require("codeium").setup {} end,
+  },
+  {
     "zbirenbaum/copilot-cmp",
     event = { "InsertEnter", "LspAttach" },
     opts = function() require("copilot_cmp").setup() end,
@@ -19,7 +28,6 @@ return {
   {
     "tzachar/cmp-tabnine",
     event = { "InsertEnter", "LspAttach" },
-    cmd = { "TabnineStatus", "TabnineDisable", "TabnineEnable", "TabnineToggle" },
     build = {
       "./install.sh",
     },
@@ -69,12 +77,13 @@ return {
       opts.format = lspkind.cmp_format {
         mode = "symbol",
         max_width = 50,
-        symbol_map = { Copilot = "", TabNine = "" },
+        symbol_map = { Copilot = "", TabNine = "", Codeium = "" },
       }
 
       opts.sources = cmp.config.sources {
-        { name = "copilot", priority = 1300 },
-        { name = "cmp_tabnine", priority = 1200 },
+        { name = "copilot", priority = 1500 },
+        { name = "cmp_tabnine", priority = 1400 },
+        { name = "codeium", priority = 1300 },
         { name = "nvim_lsp", priority = 1000 },
         { name = "emoji", priority = 900 },
         { name = "luasnip", priority = 750 },
