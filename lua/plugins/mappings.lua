@@ -6,6 +6,7 @@ return {
       mappings = {
         -- first key is the mode
         n = {
+          ["<C-q>"] = false,
           ["<LEADER>b"] = { name = "Buffers" },
           ["<LEADER>b]"] = {
             function() require("astrocore.buffer").nav(1) end,
@@ -29,6 +30,10 @@ return {
               require("astrocore.buffer").close(current)
             end,
             desc = "Close current buffer",
+          },
+          ["<LEADER>v"] = {
+            function() vim.cmd.Neotree "reveal_force_cwd" end,
+            desc = "Locate file in tree",
           },
           ["<LEADER>e"] = {
             function()

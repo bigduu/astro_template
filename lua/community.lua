@@ -2,7 +2,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.dart" },
-  { import = "astrocommunity.pack.scala" },
+  -- { import = "astrocommunity.pack.scala" },
   { import = "astrocommunity.pack.kotlin" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.cpp" },
@@ -29,4 +29,5 @@ return {
   { import = "astrocommunity.colorscheme.helix-nvim" },
   { import = "astrocommunity.colorscheme.github-nvim-theme" },
   { import = "astrocommunity.colorscheme.nord-nvim" },
+  { import = "astrocommunity.colorscheme.dracula-nvim" },
 }

@@ -11,11 +11,11 @@ return {
     default_component_configs = {
       file_size = {
         enabled = true,
-        required_width = 40,
+        required_width = 50,
       },
     },
     window = {
-      width = 20,
+      width = 10,
       auto_expand_width = true,
     },
     filesystem = {
