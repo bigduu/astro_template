@@ -2,7 +2,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.dart" },
-  -- { import = "astrocommunity.pack.scala" },
+  { import = "astrocommunity.pack.scala" },
   { import = "astrocommunity.pack.kotlin" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.cpp" },
@@ -22,6 +22,7 @@ return {
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
+  { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   -- theme
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.recipes.vscode-icons" },
