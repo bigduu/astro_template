@@ -76,9 +76,25 @@ return {
 
       opts.format = lspkind.cmp_format {
         mode = "symbol",
-        max_width = 50,
         symbol_map = { Copilot = "", TabNine = "", Codeium = "" },
       }
+
+      local astrocore, astroui = require "astrocore", require "astroui"
+      local function truncate(str, len)
+        if not str then return end
+        local truncated = vim.fn.strcharpart(str, 0, len)
+        return truncated == str and str or truncated .. astroui.get_icon "Ellipsis"
+      end
+      opts.formatting.format = astrocore.patch_func(opts.formatting.format, function(format, ...)
+        -- get item from original formatting function
+        local vim_item = format(...)
+
+        -- truncate text fields to maximum of 25% of the window
+        vim_item.abbr = truncate(vim_item.abbr, math.floor(0.25 * vim.o.columns))
+        vim_item.menu = truncate(vim_item.menu, math.floor(0.25 * vim.o.columns))
+
+        return vim_item
+      end)
 
       opts.sources = cmp.config.sources {
         { name = "copilot", priority = 1500 },
