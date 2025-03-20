@@ -31,8 +31,5 @@ return {
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   { import = "astrocommunity.recipes.vscode-icons" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
-  -- { import = "astrocommunity.colorscheme.helix-nvim" },
-  -- { import = "astrocommunity.colorscheme.github-nvim-theme" },
-  -- { import = "astrocommunity.colorscheme.nord-nvim" },
-  -- { import = "astrocommunity.colorscheme.dracula-nvim" },
+  { import = "astrocommunity.recipes.vscode" },
 }
