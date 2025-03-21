@@ -79,7 +79,6 @@ return {
     { "AstroNvim/astroui", opts = { icons = { Avante = "" } } },
     { -- if copilot.lua is available, default to copilot provider
       "zbirenbaum/copilot.lua",
-      optional = true,
       specs = {
         {
           "yetone/avante.nvim",
@@ -93,19 +92,19 @@ return {
     {
       -- make sure `Avante` is added as a filetype
       "MeanderingProgrammer/render-markdown.nvim",
-      optional = true,
+      dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
       opts = function(_, opts)
         if not opts.file_types then opts.file_types = { "markdown" } end
         opts.file_types = require("astrocore").list_insert_unique(opts.file_types, { "Avante" })
       end,
+      ft = { "markdown", "Avante" },
     },
     {
       -- make sure `Avante` is added as a filetype
       "OXY2DEV/markview.nvim",
-      optional = true,
       opts = function(_, opts)
-        if not opts.filetypes then opts.filetypes = { "markdown", "quarto", "rmd" } end
-        opts.filetypes = require("astrocore").list_insert_unique(opts.filetypes, { "Avante" })
+        if not opts.preview.filetypes then opts.preview.filetypes = { "markdown", "quarto", "rmd" } end
+        opts.preview.filetypes = require("astrocore").list_insert_unique(opts.preview.filetypes, { "Avante" })
       end,
     },
   },
