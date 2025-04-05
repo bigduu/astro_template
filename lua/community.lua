@@ -25,7 +25,7 @@ return {
   -- { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
-  { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
+  { import = "astrocommunity.diagnostics.tiny-inline-diagnostic-nvim" },
   -- theme
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
