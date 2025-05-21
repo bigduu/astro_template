@@ -3,7 +3,8 @@ return {
   "yetone/avante.nvim",
   build = vim.fn.has "win32" == 1 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
     or "make",
-  event = "User AstroFile", -- load on file open because Avante manages it's own bindings
+  event = "VeryLazy", -- load on file open because Avante manages it's own bindings
+  version = false,
   cmd = {
     "AvanteAsk",
     "AvanteBuild",
@@ -25,7 +26,6 @@ return {
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    { "AstroNvim/astrocore", opts = function(_, opts) opts.mappings.n[prefix] = { desc = " Avante" } end },
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -43,16 +43,13 @@ return {
         },
       },
     },
+    "zbirenbaum/copilot.lua", -- for provider='copilot'
+    { "AstroNvim/astrocore", opts = function(_, opts) opts.mappings.n[prefix] = { desc = " Avante" } end },
   },
   opts = {
-    provider = "deepseek",
-    vendors = {
-      deepseek = {
-        __inherited_from = "openai",
-        api_key_name = "DEEPSEEK_API_KEY",
-        endpoint = "https://api.siliconflow.cn",
-        model = "Qwen/QwQ-32B",
-      },
+    provider = "copilot",
+    copilot = {
+      model = "gemini-2.5-pro",
     },
     mappings = {
       ask = prefix .. "<CR>",
@@ -77,27 +74,32 @@ return {
   },
   specs = { -- configure optional plugins
     { "AstroNvim/astroui", opts = { icons = { Avante = "" } } },
-    { -- if copilot.lua is available, default to copilot provider
-      "zbirenbaum/copilot.lua",
-      specs = {
-        {
-          "yetone/avante.nvim",
-          opts = {
-            provider = "copilot",
-            auto_suggestions_provider = "copilot",
+    { -- Enhanced context provider
+      "nvim-telescope/telescope.nvim",
+      config = function()
+        require("telescope").setup {
+          extensions = {
+            avante_context = {
+              project_aware = true,
+            },
           },
-        },
-      },
+        }
+      end,
     },
     {
-      -- make sure `Avante` is added as a filetype
+      -- Enhanced filetype handling
       "MeanderingProgrammer/render-markdown.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
       opts = function(_, opts)
         if not opts.file_types then opts.file_types = { "markdown" } end
-        opts.file_types = require("astrocore").list_insert_unique(opts.file_types, { "Avante" })
+        opts.file_types = require("astrocore").list_insert_unique(opts.file_types, {
+          "Avante",
+          "AvanteContext", -- New filetype for context-aware mode
+          "AvanteProject", -- New filetype for project-wide queries
+        })
+        opts.context_aware = true -- Enable context awareness
       end,
-      ft = { "markdown", "Avante" },
+      ft = { "markdown", "Avante", "AvanteContext", "AvanteProject" },
     },
     {
       -- make sure `Avante` is added as a filetype

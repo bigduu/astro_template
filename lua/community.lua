@@ -11,6 +11,7 @@ return {
   { import = "astrocommunity.pack.cmake" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.go" },
   -- { import = "astrocommunity.lsp.coc-nvim" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.motion.flash-nvim" },
